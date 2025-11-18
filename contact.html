@@ -19,34 +19,20 @@
 
     <section class="section">
       <div class="contact-layout">
-        <form class="contact-form">
-          <div class="form-group">
-            <label for="name">お名前（必須）</label>
-            <input id="name" type="text" required placeholder="お名前を入力" />
-          </div>
-          <div class="form-group">
-            <label for="email">メールアドレス（必須）</label>
-            <input id="email" type="email" required placeholder="example@tone8music.com" />
-          </div>
-          <div class="form-group">
-            <label for="topic">用件種別</label>
-            <select id="topic">
-              <option>楽曲の利用について</option>
-              <option>ライセンス・商用利用について</option>
-              <option>作曲者として参加したい</option>
-              <option>その他</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="message">メッセージ本文</label>
-            <textarea id="message" placeholder="お問い合わせ内容を記入してください"></textarea>
-          </div>
-          <button class="submit-btn" type="submit">送信する（ダミー）</button>
-        </form>
+        <div class="contact-form contact-form--google">
+          <p class="contact-form-desc">お問い合わせや作曲者応募は Google フォームで受け付けています。以下のボタンからフォームを開き、必要事項をご記入ください。</p>
+          <a class="btn google-form-btn" href="https://docs.google.com/forms/d/e/1FAIpQLScx3-eHHyjQn1kCQmmf1WdY4fAJ3xZpqXKNL03BN3bF4cXECw/viewform?usp=sharing&amp;ouid=105577944985134122873" target="_blank" rel="noopener noreferrer">Google フォームを開く</a>
+          <p class="contact-form-note">記入の際は、以下の情報を準備しておくとスムーズです。</p>
+          <ul class="contact-form-list">
+            <li>返信用メールアドレス</li>
+            <li>代表となる楽曲のURL（YouTube / SoundCloud / Google Drive など）</li>
+            <li>活動名・希望する利用シーンやPRしたいポイント</li>
+          </ul>
+        </div>
 
         <div class="contact-info">
-          <p>よくあるご質問は順次 <a href="faq.html">コチラのページ</a> に追記していきます。</p>
-          <p>個人運営のため、返信まで数日いただく場合があります。急ぎの案件は余裕を持ってご連絡ください。</p>
+          <p>フォーム送信後、内容を確認して合う案件があればメールでご連絡いたします。個人運営のため返信まで数日いただく場合があります。</p>
+          <p>よくあるご質問は <a href="faq.html">FAQ ページ</a> にまとめています。お急ぎの場合もフォームからご連絡ください。</p>
         </div>
       </div>
     </section>
