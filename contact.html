@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Tone8Music</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header id="site-header" data-include="header"></header>
+
+  <main>
+    <section class="hero">
+      <h1>Contact</h1>
+      <p>楽曲の利用に関するご質問やご相談、コラボレーションのご提案など、お気軽にお問い合わせください。</p>
+    </section>
+
+    <section class="section">
+      <div class="contact-layout">
+        <form class="contact-form">
+          <div class="form-group">
+            <label for="name">お名前（必須）</label>
+            <input id="name" type="text" required placeholder="お名前を入力" />
+          </div>
+          <div class="form-group">
+            <label for="email">メールアドレス（必須）</label>
+            <input id="email" type="email" required placeholder="example@tone8music.com" />
+          </div>
+          <div class="form-group">
+            <label for="topic">用件種別</label>
+            <select id="topic">
+              <option>楽曲の利用について</option>
+              <option>ライセンス・商用利用について</option>
+              <option>作曲者として参加したい</option>
+              <option>その他</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">メッセージ本文</label>
+            <textarea id="message" placeholder="お問い合わせ内容を記入してください"></textarea>
+          </div>
+          <button class="submit-btn" type="submit">送信する（ダミー）</button>
+        </form>
+
+        <div class="contact-info">
+          <p>よくあるご質問は順次 <a href="license.html">License ページ</a> に追記していきます。</p>
+          <p>個人運営のため、返信まで数日いただく場合があります。急ぎの案件は余裕を持ってご連絡ください。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer" data-include="footer"></footer>
+
+  <script src="main.js"></script>
+</body>
+
+</html>
