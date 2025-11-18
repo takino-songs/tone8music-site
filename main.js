@@ -56,6 +56,30 @@ function updateYear() {
   }
 }
 
+
+function initBenefitCarousel() {
+  const carousels = document.querySelectorAll('.benefits-carousel');
+  carousels.forEach((carousel) => {
+    const track = carousel.querySelector('.benefits-track');
+    const prevBtn = carousel.querySelector('.carousel-prev');
+    const nextBtn = carousel.querySelector('.carousel-next');
+    if (!track || !prevBtn || !nextBtn) return;
+
+    const getScrollAmount = () => {
+      const card = track.querySelector('.benefit-card');
+      return card ? card.getBoundingClientRect().width + 22 : track.clientWidth * 0.8;
+    };
+
+    prevBtn.addEventListener('click', () => {
+      track.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+    });
+  });
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   const [headerEl, footerEl] = await Promise.all([
     loadPartial('site-header', 'partials/header.html'),
