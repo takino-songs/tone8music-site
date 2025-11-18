@@ -105,6 +105,9 @@ nav {
   transition: color 0.2s ease;
   position: relative;
   padding-bottom: 4px;
+  line-height: 1.15;
+  display: inline-flex;
+  align-items: center;
 }
 
 .nav-links a:hover,
