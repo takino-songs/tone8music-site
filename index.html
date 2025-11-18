@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,6 +12,7 @@
       background: radial-gradient(circle at top, #151b3a, #050814 60%, #020309);
       color: #f5f7ff;
     }
+
     header {
       display: flex;
       justify-content: space-between;
@@ -21,40 +23,49 @@
       position: sticky;
       top: 0;
     }
+
     .logo {
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
+
     nav a {
       margin-left: 18px;
       text-decoration: none;
       color: #a2aac5;
       font-size: 14px;
     }
+
     nav a:hover {
       color: #6fd4ff;
     }
+
     main {
       padding: 40px 8% 60px;
       max-width: 960px;
       margin: 0 auto;
     }
+
     h1 {
       font-size: 32px;
       margin-bottom: 10px;
     }
+
     p {
       font-size: 14px;
       line-height: 1.7;
       color: #b7bed8;
     }
+
     .sub {
       margin-bottom: 20px;
     }
+
     .btn-row {
       margin-top: 18px;
     }
+
     .btn {
       display: inline-block;
       padding: 10px 18px;
@@ -64,30 +75,36 @@
       margin-right: 10px;
       border: 1px solid transparent;
     }
+
     .btn-primary {
       background: linear-gradient(135deg, #6fd4ff, #a77bff);
       color: #050814;
       font-weight: 600;
     }
+
     .btn-outline {
       background: transparent;
       border-color: #3a4260;
       color: #a2aac5;
     }
+
     .section {
       margin-top: 40px;
       padding-top: 20px;
       border-top: 1px solid #252b3f;
     }
+
     h2 {
       font-size: 20px;
       margin-bottom: 8px;
     }
+
     ul {
       padding-left: 1.2em;
       font-size: 14px;
       color: #b7bed8;
     }
+
     footer {
       text-align: center;
       padding: 16px;
@@ -96,18 +113,21 @@
       border-top: 1px solid #252b3f;
       background: #050814;
     }
+
     @media (max-width: 640px) {
       header {
         flex-direction: column;
         align-items: flex-start;
         gap: 6px;
       }
+
       h1 {
         font-size: 26px;
       }
     }
   </style>
 </head>
+
 <body>
   <header>
     <div class="logo">Tone8Music</div>
@@ -118,7 +138,7 @@
   </header>
 
   <main>
-    <h1>映像クリエイターのためのフリーBGMレーベル</h1>
+    <h1>映像クリエイターのためのフリーBGM集</h1>
     <p class="sub">
       Tone8Music は、YouTube やショート動画、配信、ゲーム制作などに使いやすいインストBGMを配信する音楽ブランドです。
       CMJ や VML のように、ひとつの名前のもとに多くの楽曲を集めていきます。
@@ -151,4 +171,5 @@
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
+
 </html>
