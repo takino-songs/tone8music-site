@@ -135,6 +135,7 @@ nav {
   color: var(--text-light);
   padding: 6px 10px;
   border-radius: 6px;
+  margin-left: auto;
 }
 
 main {
@@ -411,6 +412,29 @@ footer {
   padding: 20px;
   border: 1px solid var(--card-highlight);
   list-style: disc inside;
+}
+
+.terms-article {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 20px 24px;
+  border: 1px solid var(--card-highlight);
+  margin-top: 20px;
+}
+
+.terms-article h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.terms-article ol {
+  padding-left: 1.4em;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
+.terms-article p {
+  color: var(--text-muted);
 }
 
 /* Creators page */
