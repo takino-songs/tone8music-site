@@ -179,23 +179,79 @@ main {
   text-decoration: none;
   font-size: 14px;
   border: 1px solid transparent;
-  transition: opacity 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.2s ease,
+    background 0.2s ease, color 0.2s ease;
+  transform: translateY(0) scale(1);
+  will-change: transform;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.35), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.28s ease;
+  pointer-events: none;
+}
+
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(111, 212, 255, 0.35);
+}
+
+.btn:hover,
+.btn:focus-visible {
+  transform: translateY(-2px) scale(1.03);
+}
+
+.btn:hover::after,
+.btn:focus-visible::after {
+  opacity: 1;
 }
 
 .btn-primary {
   background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
   color: #050814;
   font-weight: 600;
+  box-shadow: 0 15px 30px rgba(111, 212, 255, 0.2);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  box-shadow: 0 25px 40px rgba(111, 212, 255, 0.35);
 }
 
 .btn-secondary {
   border-color: #3a4260;
-  color: #a2aac5;
-  background: transparent;
+  color: #d0d5f0;
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
 }
 
-.btn:hover {
-  opacity: 0.9;
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
+  border-color: var(--accent-1);
+  color: var(--accent-1);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: opacity 0.2s ease, border-color 0.2s ease;
+  }
+
+  .btn:hover,
+  .btn:focus-visible {
+    transform: none;
+  }
+
+  .btn::after,
+  .btn:hover::after {
+    opacity: 0;
+  }
 }
 
 .section {
@@ -216,11 +272,69 @@ main {
   line-height: 1.8;
 }
 
+.section.use-cases {
+  margin-top: 60px;
+  padding: 56px 48px;
+  border: none;
+  background: linear-gradient(135deg, rgba(7, 12, 32, 0.95), rgba(8, 20, 56, 0.8));
+  border-radius: 28px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(3, 6, 20, 0.7);
+}
+
+.section.use-cases::before,
+.section.use-cases::after {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(111, 212, 255, 0.2), transparent 70%);
+  filter: blur(6px);
+  z-index: 0;
+}
+
+.section.use-cases::before {
+  top: -40px;
+  right: -60px;
+}
+
+.section.use-cases::after {
+  bottom: -80px;
+  left: -40px;
+}
+
+.section.use-cases h2,
+.use-cases-subtitle {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.section.use-cases h2 {
+  font-size: 28px;
+  color: var(--accent-1);
+  margin-bottom: 10px;
+}
+
+.use-cases-subtitle {
+  font-size: 16px;
+  color: #c7d0f5;
+  margin-bottom: 32px;
+}
+
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 18px;
   margin-top: 24px;
+}
+
+.use-cases-grid {
+  gap: 24px;
+  position: relative;
+  z-index: 1;
 }
 
 .card {
@@ -230,17 +344,42 @@ main {
   padding: 20px;
 }
 
+.use-case-card {
+  text-align: center;
+  padding: 30px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  background: rgba(8, 13, 32, 0.8);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02), 0 15px 30px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.use-case-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(111, 212, 255, 0.6);
+  box-shadow: 0 20px 35px rgba(6, 15, 40, 0.8), 0 0 25px rgba(111, 212, 255, 0.25);
+}
+
 .icon-badge {
-  width: 40px;
-  height: 40px;
+  width: 56px;
+  height: 56px;
   border-radius: 999px;
-  border: 1px solid var(--accent-1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.08em;
-  margin-bottom: 12px;
+  margin: 0 auto 16px;
+  color: var(--accent-1);
+  background: rgba(111, 212, 255, 0.08);
+  text-transform: uppercase;
+}
+
+@media (max-width: 640px) {
+  .section.use-cases {
+    padding: 40px 28px;
+  }
 }
 
 .steps-grid {
