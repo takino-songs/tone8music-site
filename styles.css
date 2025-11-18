@@ -297,6 +297,21 @@ main {
   line-height: 1.8;
 }
 
+.section-note {
+  font-size: 12px;
+  color: #8f97b8;
+  margin-top: 12px;
+}
+
+.section-note a {
+  color: var(--accent-1);
+  text-decoration: none;
+}
+
+.section-note a:hover {
+  text-decoration: underline;
+}
+
 .faq-wrapper {
   margin-top: 20px;
   display: flex;
