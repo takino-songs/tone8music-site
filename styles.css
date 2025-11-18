@@ -791,6 +791,32 @@ footer {
   line-height: 1.6;
 }
 
+.voices-block {
+  margin-top: 32px;
+  padding: 20px 24px;
+  border-radius: 18px;
+  border: 1px dashed rgba(111, 212, 255, 0.35);
+  background: rgba(10, 14, 32, 0.7);
+}
+
+.voices-block h3 {
+  margin: 0 0 14px;
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  color: var(--text-light);
+}
+
+.voices-list {
+  margin: 0;
+  padding-left: 1.2em;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.voices-list li + li {
+  margin-top: 6px;
+}
+
 .list-check {
   list-style: disc inside;
 }
