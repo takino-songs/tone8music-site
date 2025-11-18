@@ -150,7 +150,7 @@ main {
 
 .hero {
   padding: 60px 0;
-  text-align: left;
+  text-align: center;
 }
 
 .hero h1 {
@@ -158,9 +158,29 @@ main {
   margin-bottom: 16px;
 }
 
+.hero.hero-alt {
+  padding-bottom: 40px;
+}
+
+.hero .eyebrow {
+  display: inline-block;
+  letter-spacing: 0.1em;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--accent-1);
+  margin-bottom: 10px;
+}
+
 .hero p {
   font-size: 16px;
   color: var(--text-muted);
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.faq-hero-inner {
+  max-width: 720px;
+  margin: 0 auto;
 }
 
 .btn-row {
@@ -168,6 +188,10 @@ main {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+}
+
+.hero .btn-row {
+  justify-content: center;
 }
 
 .btn {
@@ -187,7 +211,7 @@ main {
   overflow: hidden;
 }
 
-.btn::after {
+.btn::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -207,8 +231,8 @@ main {
   transform: translateY(-2px) scale(1.03);
 }
 
-.btn:hover::after,
-.btn:focus-visible::after {
+.btn:hover::before,
+.btn:focus-visible::before {
   opacity: 1;
 }
 
@@ -248,8 +272,8 @@ main {
     transform: none;
   }
 
-  .btn::after,
-  .btn:hover::after {
+  .btn::before,
+  .btn:hover::before {
     opacity: 0;
   }
 }
@@ -270,6 +294,125 @@ main {
   color: var(--text-muted);
   font-size: 14px;
   line-height: 1.8;
+}
+
+.faq-wrapper {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.faq-section {
+  background: rgba(7, 11, 28, 0.8);
+  border-radius: 24px;
+  padding: 36px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.faq-section h2 {
+  font-size: 24px;
+  margin-bottom: 22px;
+  color: #eef2ff;
+  border-bottom: 1px solid rgba(111, 212, 255, 0.3);
+  padding-bottom: 12px;
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.faq-card {
+  background: rgba(9, 14, 32, 0.9);
+  border-radius: 18px;
+  padding: 24px;
+  border-left: 4px solid transparent;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.faq-card h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 18px;
+}
+
+.faq-card ul {
+  margin: 0;
+  padding-left: 18px;
+  color: #cfd5f5;
+}
+
+.faq-card li + li {
+  margin-top: 8px;
+}
+
+.faq-card--ok {
+  border-left-color: #22c55e;
+}
+
+.faq-card--ok h3 {
+  color: #86efac;
+}
+
+.faq-card--ng {
+  border-left-color: #ef4444;
+}
+
+.faq-card--ng h3 {
+  color: #f87171;
+}
+
+.faq-credit-card {
+  background: rgba(11, 17, 36, 0.95);
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: inset 0 0 0 1px rgba(111, 212, 255, 0.2);
+  color: #d2d6f5;
+}
+
+.faq-credit-card p {
+  margin-top: 0;
+  margin-bottom: 14px;
+  color: inherit;
+}
+
+.credit-example {
+  background: rgba(0, 0, 0, 0.45);
+  padding: 16px;
+  border-radius: 12px;
+  font-family: ui-monospace, SFMono-Regular, SFMono, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  color: #e2e8ff;
+}
+
+.credit-example p {
+  margin: 4px 0;
+}
+
+.highlight {
+  color: var(--accent-1);
+  font-weight: 600;
+}
+
+.faq-note {
+  background: rgba(13, 20, 45, 0.9);
+  padding: 24px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: #cbd5ff;
+  line-height: 1.7;
+}
+
+.faq-note a {
+  color: var(--accent-1);
+}
+
+@media (max-width: 640px) {
+  .faq-section {
+    padding: 28px 22px;
+  }
 }
 
 .section.use-cases {
@@ -345,7 +488,7 @@ main {
 }
 
 .use-case-card {
-  text-align: center;
+  text-align: left;
   padding: 30px 24px;
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 24px;
@@ -360,6 +503,19 @@ main {
   box-shadow: 0 20px 35px rgba(6, 15, 40, 0.8), 0 0 25px rgba(111, 212, 255, 0.25);
 }
 
+.use-case-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.use-case-header h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #f5f7ff;
+}
+
 .icon-badge {
   width: 56px;
   height: 56px;
@@ -370,7 +526,7 @@ main {
   justify-content: center;
   font-size: 12px;
   letter-spacing: 0.08em;
-  margin: 0 auto 16px;
+  margin: 0;
   color: var(--accent-1);
   background: rgba(111, 212, 255, 0.08);
   text-transform: uppercase;
