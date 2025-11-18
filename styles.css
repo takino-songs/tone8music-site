@@ -732,6 +732,28 @@ footer {
 }
 
 /* Creators page */
+.benefits-list {
+  margin: 24px 0 0;
+  padding: 22px 24px;
+  border-radius: 16px;
+  border: 1px solid var(--card-highlight);
+  background: var(--card-bg);
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.benefits-list li {
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.benefits-list strong {
+  color: var(--text-light);
+  margin-right: 6px;
+}
+
 .list-check {
   list-style: disc inside;
 }
