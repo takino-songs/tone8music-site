@@ -425,15 +425,87 @@ header {
   position: relative;
 }
 
+/* =========================================
+   Hero Text - Aurora & Ripple Effect
+   ========================================= */
+
 .hero h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 800;
   margin-bottom: var(--spacing-md);
-  background: linear-gradient(135deg, #fff 0%, #b0b0b0 100%);
-  -webkit-background-clip: text;
+  letter-spacing: 0.05em;
+  position: relative;
+  display: inline-block;
+
+  /* Transparent text to show background */
+  color: transparent;
   background-clip: text;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  letter-spacing: -1px;
+
+  /* Multi-layer Backgrounds
+     1. Small Ripple
+     2. Large Ripple
+     3. Base Aurora Gradient
+  */
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, transparent 12%),
+    radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, transparent 20%),
+    linear-gradient(120deg, #ffffff 0%, #c4f9ff 25%, #e2d5ff 50%, #ffffff 75%, #c4f9ff 100%);
+
+  /* Sizes for each layer */
+  background-size:
+    60% 80%,
+    /* Ripple 1 */
+    90% 120%,
+    /* Ripple 2 */
+    300% 300%;
+  /* Aurora */
+
+  /* Animation */
+  animation: auroraRipple 10s linear infinite alternate;
+
+  /* Outer Glow */
+  filter: drop-shadow(0 0 15px rgba(0, 242, 255, 0.3));
+}
+
+/* Glowing Accent Line */
+.hero h1::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: var(--gradient-primary);
+  margin: 20px auto 0;
+  border-radius: 2px;
+  box-shadow: 0 0 10px var(--accent-cyan);
+  opacity: 0.8;
+}
+
+@keyframes auroraRipple {
+  0% {
+    background-position:
+      0% 20%,
+      /* Ripple 1 */
+      80% 80%,
+      /* Ripple 2 */
+      0% 50%;
+    /* Aurora */
+  }
+
+  50% {
+    background-position:
+      100% 80%,
+      20% 20%,
+      50% 50%;
+  }
+
+  100% {
+    background-position:
+      0% 20%,
+      80% 0%,
+      100% 50%;
+  }
 }
 
 .hero p {
