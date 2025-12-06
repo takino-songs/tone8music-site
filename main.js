@@ -22,7 +22,7 @@ function initMenu(headerEl) {
   const navLinks = headerEl.querySelector('.nav-links');
 
   if (menuToggle && navLinks) {
-    // Remove old listeners to prevent duplication if re-initialized (though header is static)
+    // Remove old listeners to prevent duplication if re-initialized
     const newMenuToggle = menuToggle.cloneNode(true);
     menuToggle.parentNode.replaceChild(newMenuToggle, menuToggle);
 
@@ -43,13 +43,11 @@ function highlightActivePage() {
   if (!headerEl) return;
   const navLinks = headerEl.querySelectorAll('.nav-links a');
 
-  // Get current path, handling root as index.html
   let currentPath = window.location.pathname.split('/').pop();
   if (!currentPath || currentPath === '') currentPath = 'index.html';
 
   navLinks.forEach((link) => {
     const targetPage = link.dataset.page || link.getAttribute('href');
-    // Simple matching logic
     const isActive =
       targetPage === currentPath ||
       (currentPath === 'index.html' && (targetPage === './' || targetPage === '/'));
@@ -93,7 +91,6 @@ function initScrollReveal() {
   targets.forEach((target) => {
     target.classList.add('reveal');
 
-    // Simple staggering for siblings
     const parent = target.parentElement;
     if (parent) {
       const siblings = Array.from(parent.children).filter(c => c.classList.contains('reveal'));
@@ -108,31 +105,73 @@ function initScrollReveal() {
 }
 
 /* =========================================
+   Interactive Spotlight
+   ========================================= */
+function initSpotlight() {
+  const cards = document.querySelectorAll('.card');
+  cards.forEach((card) => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    });
+  });
+}
+
+/* =========================================
+   Ambient Particles
+   ========================================= */
+function initParticles() {
+  const particleCount = 30;
+  const body = document.body;
+
+  for (let i = 0; i < particleCount; i++) {
+    const particle = document.createElement('div');
+    particle.classList.add('particle');
+
+    // Random properties
+    const size = Math.random() * 3 + 1; // 1px to 4px
+    const left = Math.random() * 100; // 0% to 100%
+    const duration = Math.random() * 20 + 15; // 15s to 35s
+    const delay = Math.random() * -30; // Start at different times
+    const opacity = Math.random() * 0.3 + 0.1; // 0.1 to 0.4
+    const drift = (Math.random() - 0.5) * 200; // -100px to 100px horizontal drift
+
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    particle.style.left = `${left}vw`;
+    particle.style.animationDuration = `${duration}s`;
+    particle.style.animationDelay = `${delay}s`;
+    particle.style.setProperty('--particle-opacity', opacity);
+    particle.style.setProperty('--particle-drift', `${drift}px`);
+
+    body.appendChild(particle);
+  }
+}
+
+/* =========================================
    SPA Router & Page Transitions
    ========================================= */
 
 async function loadPage(url, push = true) {
   try {
-    // 1. Fetch new content
     const response = await fetch(url);
     if (!response.ok) throw new Error(`Failed to load ${url}: ${response.statusText}`);
     const htmlText = await response.text();
 
-    // 2. Parse HTML
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlText, 'text/html');
     const newMainContent = doc.querySelector('main').innerHTML;
     const newTitle = doc.title;
 
-    // 3. Animation: Exit
     const currentMain = document.querySelector('main');
     currentMain.classList.add('page-transition-exit');
     currentMain.classList.add('page-transition-exit-active');
 
-    // Wait for exit animation
     await new Promise(resolve => setTimeout(resolve, 400));
 
-    // 4. Update Content
     currentMain.innerHTML = newMainContent;
     document.title = newTitle;
 
@@ -140,43 +179,37 @@ async function loadPage(url, push = true) {
       history.pushState(null, newTitle, url);
     }
 
-    // Scroll to top
     window.scrollTo(0, 0);
 
-    // 5. Animation: Enter
     currentMain.classList.remove('page-transition-exit', 'page-transition-exit-active');
     currentMain.classList.add('page-transition-enter');
 
-    // Force reflow
     void currentMain.offsetWidth;
 
     currentMain.classList.add('page-transition-enter-active');
 
-    // 6. Re-initialize scripts
+    // Re-initialize scripts
     highlightActivePage();
     initScrollReveal();
+    initSpotlight(); // Re-bind spotlight events to new cards
 
-    // Cleanup enter classes
     setTimeout(() => {
       currentMain.classList.remove('page-transition-enter', 'page-transition-enter-active');
     }, 400);
 
   } catch (err) {
     console.error('SPA Navigation Error:', err);
-    // Fallback to normal navigation if fetch fails
     window.location.href = url;
   }
 }
 
 function initRouter() {
-  // Intercept clicks on internal links
   document.addEventListener('click', (e) => {
     const link = e.target.closest('a');
     if (!link) return;
 
     const href = link.getAttribute('href');
 
-    // Ignore external links, anchors, mailto, etc.
     if (!href ||
       href.startsWith('http') ||
       href.startsWith('//') ||
@@ -185,13 +218,10 @@ function initRouter() {
       return;
     }
 
-    // Check if it's a same-origin link just to be safe (though relative paths are fine)
-    // We assume relative paths for internal navigation
     e.preventDefault();
     loadPage(href);
   });
 
-  // Handle Back/Forward buttons
   window.addEventListener('popstate', () => {
     loadPage(window.location.pathname, false);
   });
@@ -202,17 +232,17 @@ function initRouter() {
    ========================================= */
 
 document.addEventListener('DOMContentLoaded', async () => {
-  // Initial Load
   const [headerEl, footerEl] = await Promise.all([
     loadPartial('site-header', 'partials/header.html'),
     loadPartial('site-footer', 'partials/footer.html'),
   ]);
 
   initMenu(headerEl);
-  highlightActivePage(); // Pass nothing, let it find header
+  highlightActivePage();
   updateYear();
   initScrollReveal();
+  initSpotlight(); // Initial spotlight binding
+  initParticles(); // Generate ambient particles
 
-  // Start Router
   initRouter();
 });

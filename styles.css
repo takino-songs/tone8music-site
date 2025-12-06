@@ -105,6 +105,37 @@ body::after {
   }
 }
 
+/* Floating Particles */
+.particle {
+  position: fixed;
+  background: #fff;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0;
+  animation: floatParticle linear infinite;
+}
+
+@keyframes floatParticle {
+  0% {
+    transform: translateY(100vh) translateX(0);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: var(--particle-opacity);
+  }
+
+  90% {
+    opacity: var(--particle-opacity);
+  }
+
+  100% {
+    transform: translateY(-100px) translateX(var(--particle-drift));
+    opacity: 0;
+  }
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -433,18 +464,25 @@ header {
   overflow: hidden;
 }
 
+/* Spotlight Effect */
 .card::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.06), transparent 40%);
+  background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.08), transparent 40%);
   opacity: 0;
   transition: opacity 0.5s;
   pointer-events: none;
+  z-index: 0;
 }
 
 .card:hover::before {
   opacity: 1;
+}
+
+.card>* {
+  position: relative;
+  z-index: 1;
 }
 
 .card:hover {
