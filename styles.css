@@ -10,8 +10,10 @@
   --text-main: #e0e6ed;
   --text-muted: #94a3b8;
   --accent-cyan: #00f2ff;
-  --accent-purple: #bd00ff;
+  --accent-purple: #8a2be2;
+  /* Deep Violet */
   --accent-pink: #ff0055;
+  /* Kept for minor accents if needed, but removed from main logo */
   --glass-bg: rgba(255, 255, 255, 0.03);
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-highlight: rgba(255, 255, 255, 0.15);
@@ -44,6 +46,27 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: var(--bg-dark);
+  /* Fix overscroll white background */
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 5px;
+  border: 2px solid var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 body {
@@ -89,7 +112,8 @@ body::after {
   filter: blur(120px);
   z-index: -2;
   opacity: 0.25;
-  background: radial-gradient(circle, rgba(189, 0, 255, 0.25), transparent 70%);
+  background: radial-gradient(circle, rgba(138, 43, 226, 0.25), transparent 70%);
+  /* Violet */
   animation: floatOrb 25s infinite alternate ease-in-out;
   animation-delay: -12s;
   pointer-events: none;
@@ -105,14 +129,17 @@ body::after {
   }
 }
 
-/* Floating Particles */
+/* Floating Particles - Enhanced Visibility */
 .particle {
   position: fixed;
   background: #fff;
   border-radius: 50%;
   pointer-events: none;
-  z-index: -1;
+  z-index: 1;
+  /* Visible above background */
   opacity: 0;
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+  /* Glowing effect */
   animation: floatParticle linear infinite;
 }
 
@@ -136,10 +163,33 @@ body::after {
   }
 }
 
+/* =========================================
+   Links & Interactions
+   ========================================= */
+
 a {
   text-decoration: none;
   color: inherit;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+/* Text Links - Neon Style */
+p a,
+.text-content a,
+.faq-item a,
+.card a:not(.btn) {
+  color: var(--accent-cyan);
+  border-bottom: 1px solid rgba(0, 242, 255, 0.3);
+  padding-bottom: 2px;
+}
+
+p a:hover,
+.text-content a:hover,
+.faq-item a:hover,
+.card a:not(.btn):hover {
+  color: #fff;
+  border-bottom-color: var(--accent-cyan);
+  text-shadow: 0 0 12px var(--accent-cyan);
 }
 
 ul {
@@ -224,6 +274,9 @@ main {
   flex: 1;
   padding-top: 100px;
   /* Header height offset */
+  position: relative;
+  z-index: 2;
+  /* Ensure content is above particles */
 }
 
 .section {
@@ -262,14 +315,19 @@ header {
   flex-direction: column;
 }
 
+/* Refined Logo - White -> Cyan -> Violet */
 .logo {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.5rem;
   letter-spacing: 1px;
-  background: linear-gradient(to right, #fff, var(--accent-cyan));
+  background: linear-gradient(to right, #ffffff, #00f2ff, #8a2be2);
+  background-size: 300%;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: gradientFlow 6s ease infinite;
+  filter: drop-shadow(0 0 5px rgba(0, 242, 255, 0.3));
 }
 
 .tagline {
@@ -373,6 +431,7 @@ header {
   margin-bottom: var(--spacing-md);
   background: linear-gradient(135deg, #fff 0%, #b0b0b0 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   letter-spacing: -1px;
 }
@@ -433,7 +492,7 @@ header {
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(189, 0, 255, 0.4);
+  box-shadow: 0 8px 30px rgba(138, 43, 226, 0.4);
 }
 
 .btn-secondary {
@@ -464,7 +523,7 @@ header {
   overflow: hidden;
 }
 
-/* Spotlight Effect */
+/* Spotlight Effect - Subtle Luxury */
 .card::before {
   content: "";
   position: absolute;
@@ -603,32 +662,174 @@ header {
 footer {
   background: #050508;
   border-top: 1px solid var(--glass-border);
-  padding: var(--spacing-lg) 0;
+  padding: 60px 0 20px;
   margin-top: auto;
   font-size: 0.9rem;
   color: var(--text-muted);
-  text-align: center;
 }
 
-.footer-inner {
+.footer-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--spacing-md);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-col h4 {
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+.footer-logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: #fff;
+  display: inline-block;
+  margin-bottom: 16px;
+  background: linear-gradient(to right, #ffffff, #00f2ff, #8a2be2);
+  background-size: 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientFlow 6s ease infinite;
+}
+
+.footer-desc {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  opacity: 0.8;
+}
+
+.footer-nav {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: var(--spacing-md);
+  gap: 12px;
 }
 
-.footer-links {
-  display: flex;
-  gap: 24px;
-  flex-wrap: wrap;
-  justify-content: center;
+.footer-nav a {
+  color: var(--text-muted);
+  transition: color 0.3s ease, padding-left 0.3s ease;
 }
 
-.footer-links a:hover {
+.footer-nav a:hover {
   color: var(--accent-cyan);
+  padding-left: 6px;
+}
+
+.social-links {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.social-links a {
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  background: rgba(0, 242, 255, 0.1);
+  border-color: var(--accent-cyan);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.footer-copyright {
+  font-size: 0.8rem;
+  opacity: 0.6;
+  border-top: 1px solid var(--glass-border);
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+/* =========================================
+   Luxury Initial Loader
+   ========================================= */
+.site-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #050508;
+  /* Slightly blue-ish dark */
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 1.2s cubic-bezier(0.65, 0, 0.35, 1), visibility 1.2s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.site-loader.loaded {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-content {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 2px;
+  animation: focusIn 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  text-shadow:
+    0 0 20px rgba(0, 242, 255, 0.6),
+    0 0 40px rgba(138, 43, 226, 0.4);
+}
+
+/* Aurora Glow behind text */
+.loader-content::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0, 242, 255, 0.2), rgba(138, 43, 226, 0.2), transparent 70%);
+  filter: blur(30px);
+  z-index: -1;
+  animation: auroraPulse 3s infinite alternate ease-in-out;
+}
+
+@keyframes focusIn {
+  0% {
+    filter: blur(15px);
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  100% {
+    filter: blur(0);
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes auroraPulse {
+  0% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
 }
 
 /* =========================================

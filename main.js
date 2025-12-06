@@ -22,7 +22,6 @@ function initMenu(headerEl) {
   const navLinks = headerEl.querySelector('.nav-links');
 
   if (menuToggle && navLinks) {
-    // Remove old listeners to prevent duplication if re-initialized
     const newMenuToggle = menuToggle.cloneNode(true);
     menuToggle.parentNode.replaceChild(newMenuToggle, menuToggle);
 
@@ -121,6 +120,35 @@ function initSpotlight() {
 }
 
 /* =========================================
+   Luxury Initial Loader
+   ========================================= */
+function initLoader() {
+  const loader = document.createElement('div');
+  loader.classList.add('site-loader');
+  loader.innerHTML = '<div class="loader-content">Tone8Music</div>';
+  document.body.appendChild(loader);
+
+  window.addEventListener('load', () => {
+    // Wait for the focus animation to be fully appreciated (1.2s delay)
+    setTimeout(() => {
+      loader.classList.add('loaded');
+      // Remove after transition completes
+      setTimeout(() => {
+        loader.remove();
+      }, 1200);
+    }, 1200);
+  });
+
+  // Fallback for slow connections
+  setTimeout(() => {
+    if (!loader.classList.contains('loaded')) {
+      loader.classList.add('loaded');
+      setTimeout(() => loader.remove(), 1200);
+    }
+  }, 4000);
+}
+
+/* =========================================
    Ambient Particles
    ========================================= */
 function initParticles() {
@@ -131,13 +159,12 @@ function initParticles() {
     const particle = document.createElement('div');
     particle.classList.add('particle');
 
-    // Random properties
-    const size = Math.random() * 3 + 1; // 1px to 4px
-    const left = Math.random() * 100; // 0% to 100%
-    const duration = Math.random() * 20 + 15; // 15s to 35s
-    const delay = Math.random() * -30; // Start at different times
-    const opacity = Math.random() * 0.3 + 0.1; // 0.1 to 0.4
-    const drift = (Math.random() - 0.5) * 200; // -100px to 100px horizontal drift
+    const size = Math.random() * 3 + 1;
+    const left = Math.random() * 100;
+    const duration = Math.random() * 20 + 15;
+    const delay = Math.random() * -30;
+    const opacity = Math.random() * 0.5 + 0.4; // High opacity
+    const drift = (Math.random() - 0.5) * 200;
 
     particle.style.width = `${size}px`;
     particle.style.height = `${size}px`;
@@ -188,10 +215,9 @@ async function loadPage(url, push = true) {
 
     currentMain.classList.add('page-transition-enter-active');
 
-    // Re-initialize scripts
     highlightActivePage();
     initScrollReveal();
-    initSpotlight(); // Re-bind spotlight events to new cards
+    initSpotlight();
 
     setTimeout(() => {
       currentMain.classList.remove('page-transition-enter', 'page-transition-enter-active');
@@ -240,9 +266,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   initMenu(headerEl);
   highlightActivePage();
   updateYear();
+  initLoader();
   initScrollReveal();
-  initSpotlight(); // Initial spotlight binding
-  initParticles(); // Generate ambient particles
+  initSpotlight();
+  initParticles();
 
   initRouter();
 });
