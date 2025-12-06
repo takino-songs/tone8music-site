@@ -5,6 +5,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FAQ | Tone8Music</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 
@@ -13,7 +18,7 @@
 
   <main class="faq-main">
     <section class="hero hero-alt">
-      <div class="faq-hero-inner">
+      <div class="container">
         <h1>よくある質問</h1>
         <p>
           Tone8Music の楽曲を安心して活用していただくためのガイドラインをまとめました。
@@ -22,53 +27,57 @@
       </div>
     </section>
 
-    <div class="faq-wrapper">
-      <section class="faq-section">
-        <h2>基本ルール</h2>
-        <div class="faq-grid">
-          <article class="faq-card faq-card--ok">
-            <h3>OK なこと</h3>
-            <ul>
-              <li>YouTube、TikTok、Instagram などでのBGM利用（収益化動画も可）</li>
-              <li>個人・小規模チャンネルや案件での無料利用</li>
-              <li>ゲーム実況、Vlog、レビュー、解説動画での利用</li>
-              <li>ライブ配信（Twitch / YouTube Live など）での利用</li>
-              <li>個人制作のアプリやゲームでの組み込み</li>
-              <li>店舗やイベントでのBGMとしての利用</li>
-            </ul>
-          </article>
-          <article class="faq-card faq-card--ng">
-            <h3>NG なこと</h3>
-            <ul>
-              <li>楽曲データそのものの再配布・販売</li>
-              <li>作業用BGMなど楽曲を主コンテンツにした動画の大量投稿</li>
-              <li>自作曲として音楽配信サービスへ登録する行為</li>
-              <li>BGM素材集として再配布・販売すること</li>
-              <li>公序良俗に反するコンテンツでの利用</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-
-      <section class="faq-section">
-        <h2>クレジット表記について</h2>
-        <div class="faq-credit-card">
-          <p>クレジット表記は <span class="highlight">任意</span>です。必須ではありませんが、記載いただけると活動の励みになります。</p>
-          <p>表記例（概要欄などにご利用ください）</p>
-          <div class="credit-example">
-            <p>♪ Music by Tone8Music</p>
-            <p>https://tone8music.com</p>
+    <div class="container">
+      <div class="faq-wrapper" style="display: flex; flex-direction: column; gap: 60px;">
+        <section class="faq-section">
+          <h2>基本ルール</h2>
+          <div class="faq-grid">
+            <article class="faq-item" style="border-left: 4px solid #22c55e;">
+              <h3 style="color: #86efac;">OK なこと</h3>
+              <ul>
+                <li>YouTube、TikTok、Instagram などでのBGM利用（収益化動画も可）</li>
+                <li>個人・小規模チャンネルや案件での無料利用</li>
+                <li>ゲーム実況、Vlog、レビュー、解説動画での利用</li>
+                <li>ライブ配信（Twitch / YouTube Live など）での利用</li>
+                <li>個人制作のアプリやゲームでの組み込み</li>
+                <li>店舗やイベントでのBGMとしての利用</li>
+              </ul>
+            </article>
+            <article class="faq-item" style="border-left: 4px solid #ef4444;">
+              <h3 style="color: #f87171;">NG なこと</h3>
+              <ul>
+                <li>楽曲データそのものの再配布・販売</li>
+                <li>作業用BGMなど楽曲を主コンテンツにした動画の大量投稿</li>
+                <li>自作曲として音楽配信サービスへ登録する行為</li>
+                <li>BGM素材集として再配布・販売すること</li>
+                <li>公序良俗に反するコンテンツでの利用</li>
+              </ul>
+            </article>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="faq-section">
-        <h2>その他・お問い合わせ</h2>
-        <div class="faq-note">
-          <p>企業様のプロモーションやテレビCM、大規模プロジェクトでのご利用を検討されている場合は、事前に <a href="contact.html">Contact ページ</a> からご相談ください。</p>
-          <p>規約やFAQの内容は予告なく変更される場合があります。常に最新の情報は License ページをご確認ください。</p>
-        </div>
-      </section>
+        <section class="faq-section">
+          <h2>クレジット表記について</h2>
+          <div class="card faq-credit-card">
+            <p>クレジット表記は <span class="highlight"
+                style="color: var(--accent-cyan); font-weight: 700;">任意</span>です。必須ではありませんが、記載いただけると活動の励みになります。</p>
+            <p>表記例（概要欄などにご利用ください）</p>
+            <div class="credit-example"
+              style="background: rgba(0,0,0,0.3); padding: 16px; border-radius: 8px; font-family: monospace; margin-top: 12px;">
+              <p style="margin: 0;">♪ Music by Tone8Music</p>
+              <p style="margin: 0;">https://tone8music.com</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="faq-section">
+          <h2>その他・お問い合わせ</h2>
+          <div class="card faq-note">
+            <p>企業様のプロモーションやテレビCM、大規模プロジェクトでのご利用を検討されている場合は、事前に <a href="contact.html">Contact ページ</a> からご相談ください。</p>
+            <p>規約やFAQの内容は予告なく変更される場合があります。常に最新の情報は License ページをご確認ください。</p>
+          </div>
+        </section>
+      </div>
     </div>
   </main>
 
