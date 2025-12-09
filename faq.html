@@ -29,54 +29,141 @@
 
     <div class="container">
       <div class="faq-wrapper" style="display: flex; flex-direction: column; gap: 60px;">
+
+        <!-- 基本ルール セクション -->
         <section class="faq-section">
-          <h2>基本ルール</h2>
+          <h2>🎵 基本ルール</h2>
           <div class="faq-grid">
-            <article class="faq-item" style="border-left: 4px solid #22c55e;">
-              <h3 style="color: #86efac;">OK なこと</h3>
-              <ul>
-                <li>YouTube、TikTok、Instagram などでのBGM利用（収益化動画も可）</li>
-                <li>個人・小規模チャンネルや案件での無料利用</li>
-                <li>ゲーム実況、Vlog、レビュー、解説動画での利用</li>
-                <li>ライブ配信（Twitch / YouTube Live など）での利用</li>
-                <li>個人制作のアプリやゲームでの組み込み</li>
-                <li>店舗やイベントでのBGMとしての利用</li>
+            <article class="faq-item faq-item--ok">
+              <div class="faq-item-header">
+                <span class="faq-badge faq-badge--ok">✓ OK</span>
+                <h3>OKなこと</h3>
+              </div>
+              <ul class="faq-list">
+                <li><span class="faq-icon">🎬</span>YouTube、TikTok、Instagram などでのBGM利用<span class="faq-tag">収益化OK</span>
+                </li>
+                <li><span class="faq-icon">👤</span>個人・小規模チャンネルや案件での無料利用</li>
+                <li><span class="faq-icon">🎮</span>ゲーム実況、Vlog、レビュー、解説動画での利用</li>
+                <li><span class="faq-icon">📺</span>ライブ配信（Twitch / YouTube Live など）での利用</li>
+                <li><span class="faq-icon">📱</span>個人制作のアプリやゲームでの組み込み</li>
+                <li><span class="faq-icon">🏪</span>店舗やイベントでのBGMとしての利用</li>
               </ul>
             </article>
-            <article class="faq-item" style="border-left: 4px solid #ef4444;">
-              <h3 style="color: #f87171;">NG なこと</h3>
-              <ul>
-                <li>楽曲データそのものの再配布・販売</li>
-                <li>作業用BGMなど楽曲を主コンテンツにした動画の大量投稿</li>
-                <li>自作曲として音楽配信サービスへ登録する行為</li>
-                <li>BGM素材集として再配布・販売すること</li>
-                <li>公序良俗に反するコンテンツでの利用</li>
+            <article class="faq-item faq-item--ng">
+              <div class="faq-item-header">
+                <span class="faq-badge faq-badge--ng">✕ NG</span>
+                <h3>NGなこと</h3>
+              </div>
+              <ul class="faq-list">
+                <li><span class="faq-icon">🚫</span>楽曲データそのものの再配布・販売</li>
+                <li><span class="faq-icon">🚫</span>作業用BGMなど楽曲を主コンテンツにした動画の大量投稿</li>
+                <li><span class="faq-icon">🚫</span>自作曲として音楽配信サービスへ登録する行為</li>
+                <li><span class="faq-icon">🚫</span>BGM素材集として再配布・販売すること</li>
+                <li><span class="faq-icon">🚫</span>公序良俗に反するコンテンツでの利用</li>
               </ul>
             </article>
           </div>
         </section>
 
+        <!-- クレジット表記 セクション -->
         <section class="faq-section">
-          <h2>クレジット表記について</h2>
+          <h2>📝 クレジット表記について</h2>
           <div class="card faq-credit-card">
-            <p>クレジット表記は <span class="highlight"
-                style="color: var(--accent-cyan); font-weight: 700;">任意</span>です。必須ではありませんが、記載いただけると活動の励みになります。</p>
-            <p>表記例（概要欄などにご利用ください）</p>
-            <div class="credit-example"
-              style="background: rgba(0,0,0,0.3); padding: 16px; border-radius: 8px; font-family: monospace; margin-top: 12px;">
-              <p style="margin: 0;">♪ Music by Tone8Music</p>
-              <p style="margin: 0;">https://tone8music.com</p>
+            <div class="faq-credit-status">
+              <span class="faq-badge faq-badge--optional">任意</span>
+              <p>クレジット表記は必須ではありませんが、記載いただけると活動の励みになります。</p>
+            </div>
+            <div class="credit-example-box">
+              <p class="credit-example-label">表記例（概要欄などにコピペしてご利用ください）</p>
+              <div class="credit-example" id="creditText">
+                <p style="margin: 0;">♪ Music by Tone8Music</p>
+                <p style="margin: 0;">https://tone8music.com</p>
+              </div>
+              <button class="btn btn-copy" id="copyCredit" onclick="copyCredit()">
+                <span class="copy-icon">📋</span> コピー
+              </button>
             </div>
           </div>
         </section>
 
+        <!-- よくある質問 アコーディオン -->
         <section class="faq-section">
-          <h2>その他・お問い合わせ</h2>
-          <div class="card faq-note">
-            <p>企業様のプロモーションやテレビCM、大規模プロジェクトでのご利用を検討されている場合は、事前に <a href="contact.html">Contact ページ</a> からご相談ください。</p>
-            <p>規約やFAQの内容は予告なく変更される場合があります。常に最新の情報は License ページをご確認ください。</p>
+          <h2>❓ よくある質問</h2>
+          <div class="faq-accordion">
+            <details class="faq-details">
+              <summary>YouTubeで楽曲を使うにはどうすればいいですか？</summary>
+              <div class="faq-answer">
+                <p>YouTubeの動画編集画面から直接 Tone8Music
+                  の楽曲を追加できます。動画アップロード時に「オーディオ」から曲を検索して追加するだけでOK！特に<strong>ショート動画</strong>ではこの方法がとても簡単でおすすめです。</p>
+              </div>
+            </details>
+            <details class="faq-details">
+              <summary>楽曲をダウンロードするにはどうすればいいですか？</summary>
+              <div class="faq-answer">
+                <p>YouTubeの動画説明欄にダウンロードリンクを掲載している楽曲があります。また、Spotify や Apple Music などの音楽配信サービスでもお聴きいただけます。</p>
+              </div>
+            </details>
+            <details class="faq-details">
+              <summary>収益化した動画に使用しても良いですか？</summary>
+              <div class="faq-answer">
+                <p>はい、YouTube パートナープログラムなどでの収益化動画にもご利用いただけます。ただし、Content ID による自動検知が行われる場合があります。</p>
+              </div>
+            </details>
+            <details class="faq-details">
+              <summary>Content ID で著作権の主張が来たのですが？</summary>
+              <div class="faq-answer">
+                <p>Tone8Music の楽曲は Content ID に登録されており、自動検知されることがあります。収益化への影響はありませんのでご安心ください。</p>
+              </div>
+            </details>
+            <details class="faq-details">
+              <summary>商用利用は可能ですか？</summary>
+              <div class="faq-answer">
+                <p>はい、すべて無料でご利用いただけます！個人・企業問わず、大規模プロジェクトやテレビCMなどでも追加料金なくお使いいただけます。</p>
+              </div>
+            </details>
+            <details class="faq-details">
+              <summary>楽曲を編集（カット・ループなど）しても良いですか？</summary>
+              <div class="faq-answer">
+                <p>はい、動画に合わせてカットやループ、フェードイン・アウトなどの編集は自由に行っていただけます。ただし、楽曲そのものをリミックスして再配布することはご遠慮ください。</p>
+              </div>
+            </details>
+            <details class="faq-details">
+              <summary>複数の動画で同じ楽曲を使っても良いですか？</summary>
+              <div class="faq-answer">
+                <p>はい、同じ楽曲を複数の動画でご利用いただけます。利用回数に制限はありません。</p>
+              </div>
+            </details>
+            <details class="faq-details">
+              <summary>TikTokやInstagramでも使えますか？</summary>
+              <div class="faq-answer">
+                <p>はい、TikTok、Instagram Reels、Xなど様々なSNSプラットフォームでご利用いただけます。収益化コンテンツでも問題ありません。</p>
+              </div>
+            </details>
+            <details class="faq-details">
+              <summary>ゲームやアプリに組み込んでも良いですか？</summary>
+              <div class="faq-answer">
+                <p>個人制作のゲームやアプリであれば、BGMとして組み込んでいただけます。商用アプリや大規模プロジェクトの場合は事前にご相談ください。</p>
+              </div>
+            </details>
           </div>
         </section>
+
+        <!-- その他・お問い合わせ -->
+        <section class="faq-section">
+          <h2>📬 その他・お問い合わせ</h2>
+          <div class="card faq-note">
+            <div class="faq-note-content">
+              <p>🏢 企業様のプロモーションやテレビCM、大規模プロジェクトでのご利用を検討されている場合は、事前に <a href="contact.html">Contact ページ</a> からご相談ください。
+              </p>
+              <p style="margin-bottom: 0;">⚠️ 規約やFAQの内容は予告なく変更される場合があります。常に最新の情報は <a href="license.html">License ページ</a>
+                をご確認ください。</p>
+            </div>
+            <div class="faq-cta" style="text-align: center; margin-top: 24px;">
+              <a href="contact.html" class="btn btn-primary">お問い合わせはこちら</a>
+            </div>
+          </div>
+        </section>
+
       </div>
     </div>
   </main>
@@ -84,6 +171,20 @@
   <footer id="site-footer" data-include="footer"></footer>
 
   <script src="main.js"></script>
+  <script>
+    function copyCredit() {
+      const creditText = document.getElementById('creditText').innerText;
+      navigator.clipboard.writeText(creditText).then(() => {
+        const btn = document.getElementById('copyCredit');
+        btn.innerHTML = '<span class="copy-icon">✓</span> コピーしました！';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = '<span class="copy-icon">📋</span> コピー';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+  </script>
 </body>
 
 </html>
