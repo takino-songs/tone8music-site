@@ -184,8 +184,29 @@ function initParticles() {
 
 async function loadPage(url, push = true) {
   try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error(`Failed to load ${url}: ${response.statusText}`);
+    // Clean URL (remove .html for display, but add it for fetching)
+    let fetchUrl = url;
+    let displayUrl = url;
+
+    // If URL doesn't have .html, add it for fetching
+    if (!url.endsWith('.html')) {
+      if (url === '/' || url === '') {
+        fetchUrl = 'index.html';
+        displayUrl = '/';
+      } else {
+        fetchUrl = url.replace(/\/$/, '') + '.html';
+        displayUrl = url.replace(/\.html$/, '');
+      }
+    } else {
+      // If URL has .html, remove it for display
+      displayUrl = url.replace(/\.html$/, '');
+      if (displayUrl === '/index' || displayUrl === 'index') {
+        displayUrl = '/';
+      }
+    }
+
+    const response = await fetch(fetchUrl);
+    if (!response.ok) throw new Error(`Failed to load ${fetchUrl}: ${response.statusText}`);
     const htmlText = await response.text();
 
     const parser = new DOMParser();
@@ -203,7 +224,7 @@ async function loadPage(url, push = true) {
     document.title = newTitle;
 
     if (push) {
-      history.pushState(null, newTitle, url);
+      history.pushState(null, newTitle, displayUrl);
     }
 
     window.scrollTo(0, 0);
@@ -239,7 +260,7 @@ function initRouter() {
     const link = e.target.closest('a');
     if (!link) return;
 
-    const href = link.getAttribute('href');
+    let href = link.getAttribute('href');
 
     if (!href ||
       href.startsWith('http') ||
@@ -250,6 +271,15 @@ function initRouter() {
     }
 
     e.preventDefault();
+
+    // Convert href to clean URL (remove .html)
+    if (href.endsWith('.html')) {
+      href = href.replace(/\.html$/, '');
+      if (href === 'index' || href === '/index') {
+        href = '/';
+      }
+    }
+
     loadPage(href);
   });
 
@@ -282,4 +312,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   initRouter();
+
+  // Clean up URL on initial page load (remove .html)
+  const currentPath = window.location.pathname;
+  if (currentPath.endsWith('.html')) {
+    let cleanPath = currentPath.replace(/\.html$/, '');
+    if (cleanPath === '/index' || cleanPath === 'index') {
+      cleanPath = '/';
+    }
+    history.replaceState(null, document.title, cleanPath + window.location.search + window.location.hash);
+  }
 });
