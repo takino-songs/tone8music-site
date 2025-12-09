@@ -797,6 +797,126 @@ footer {
   padding-left: 6px;
 }
 
+
+/* =========================================
+   Language Switcher
+   ========================================= */
+
+.lang-switcher {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.lang-toggle {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  color: var(--text-muted);
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: var(--font-base);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+}
+
+.lang-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 10px rgba(0, 242, 255, 0.2);
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: var(--bg-dark-secondary);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  width: 140px;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  z-index: 1001;
+  padding: 6px;
+  backdrop-filter: blur(10px);
+}
+
+.lang-dropdown.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.lang-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 8px 12px;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+  border-radius: 4px;
+}
+
+.lang-btn:hover {
+  background: rgba(0, 242, 255, 0.1);
+  color: #fff;
+}
+
+/* Mobile adjustments for Lang Switcher */
+@media (max-width: 768px) {
+  .lang-switcher {
+    width: 100%;
+    margin-top: 10px;
+    display: block;
+  }
+
+  .lang-toggle {
+    width: 100%;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .lang-dropdown {
+    width: 100%;
+    position: static;
+    margin-top: 10px;
+    transform: none;
+    display: none;
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  .lang-dropdown.active {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
 .social-links {
   display: flex;
   gap: 16px;
@@ -804,8 +924,10 @@ footer {
 }
 
 .social-links a {
+  color: #fff;
+  font-size: 0.9rem;
+  border: 1px solid var(--glass-border);
   padding: 8px 16px;
-  background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--glass-border);
   border-radius: 4px;
   font-size: 0.85rem;

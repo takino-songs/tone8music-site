@@ -219,6 +219,11 @@ async function loadPage(url, push = true) {
     initScrollReveal();
     initSpotlight();
 
+    // Apply i18n translations to the new content
+    if (window.i18n) {
+      window.i18n.updateContent();
+    }
+
     setTimeout(() => {
       currentMain.classList.remove('page-transition-enter', 'page-transition-enter-active');
     }, 400);
@@ -270,6 +275,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   initScrollReveal();
   initSpotlight();
   initParticles();
+
+  // Initialize i18n
+  if (window.i18n) {
+    window.i18n.init();
+  }
 
   initRouter();
 });

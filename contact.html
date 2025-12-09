@@ -19,8 +19,8 @@
   <main>
     <section class="hero">
       <div class="container">
-        <h1>Contact</h1>
-        <p>楽曲の利用に関するご質問やご相談、コラボレーションのご提案など、お気軽にお問い合わせください。</p>
+        <h1 data-i18n="contact_hero_title">Contact</h1>
+        <p data-i18n="contact_hero_desc">楽曲の利用に関するご質問やご相談、コラボレーションのご提案など、お気軽にお問い合わせください。</p>
       </div>
     </section>
 
@@ -29,24 +29,26 @@
         <div class="contact-layout"
           style="display: grid; gap: 40px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
           <div class="contact-form contact-form--google">
-            <p class="contact-form-desc">お問い合わせや作曲者応募は Google フォームで受け付けています。以下のボタンからフォームを開き、必要事項をご記入ください。</p>
+            <p class="contact-form-desc" data-i18n="contact_form_desc">お問い合わせや作曲者応募は Google
+              フォームで受け付けています。以下のボタンからフォームを開き、必要事項をご記入ください。</p>
             <div style="margin: 24px 0; text-align: center;">
               <a class="btn btn-primary google-form-btn"
                 href="https://docs.google.com/forms/d/e/1FAIpQLScx3-eHHyjQn1kCQmmf1WdY4fAJ3xZpqXKNL03BN3bF4cXECw/viewform?usp=sharing&amp;ouid=105577944985134122873"
-                target="_blank" rel="noopener noreferrer">Google フォームを開く</a>
+                target="_blank" rel="noopener noreferrer" data-i18n="btn_open_google_form">Google フォームを開く</a>
             </div>
-            <p class="contact-form-note" style="font-size: 0.9rem; color: var(--text-muted);">記入の際は、以下の情報を準備しておくとスムーズです。
+            <p class="contact-form-note" style="font-size: 0.9rem; color: var(--text-muted);"
+              data-i18n="contact_note_title">記入の際は、以下の情報を準備しておくとスムーズです。
             </p>
             <ul class="contact-form-list"
               style="list-style: disc; padding-left: 20px; margin-top: 8px; color: var(--text-muted);">
-              <li>返信用メールアドレス</li>
-              <li>提供予定の楽曲のURL（YouTube / SoundCloud / Google Drive など）</li>
+              <li data-i18n="contact_note_item1">返信用メールアドレス</li>
+              <li data-i18n="contact_note_item2">提供予定の楽曲のURL（YouTube / SoundCloud / Google Drive など）</li>
             </ul>
           </div>
 
           <div class="contact-info card">
-            <p>フォーム送信後、内容を確認して合う案件があればメールでご連絡いたします。個人運営のため返信まで数日いただく場合があります。</p>
-            <p>よくあるご質問は <a href="faq.html">FAQ ページ</a> にまとめています。お急ぎの場合もフォームからご連絡ください。</p>
+            <p data-i18n="contact_info_text1">フォーム送信後、内容を確認して合う案件があればメールでご連絡いたします。個人運営のため返信まで数日いただく場合があります。</p>
+            <p data-i18n="contact_info_text2">よくあるご質問は <a href="faq.html">FAQ ページ</a> にまとめています。お急ぎの場合もフォームからご連絡ください。</p>
           </div>
         </div>
       </div>
@@ -55,6 +57,7 @@
 
   <footer id="site-footer" data-include="footer"></footer>
 
+  <script src="i18n.js"></script>
   <script src="main.js"></script>
 </body>
 
