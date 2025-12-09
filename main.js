@@ -129,14 +129,14 @@ function initLoader() {
   document.body.appendChild(loader);
 
   window.addEventListener('load', () => {
-    // Wait for the focus animation to be fully appreciated (1.2s delay)
+    // Wait for the focus animation briefly before fading out
     setTimeout(() => {
       loader.classList.add('loaded');
       // Remove after transition completes
       setTimeout(() => {
         loader.remove();
-      }, 1200);
-    }, 1200);
+      }, 600);
+    }, 500);
   });
 
   // Fallback for slow connections
