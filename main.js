@@ -57,6 +57,21 @@ function highlightActivePage() {
       link.classList.remove('active');
     }
   });
+
+  // Also highlight bottom nav items
+  const bottomNavItems = document.querySelectorAll('.bottom-nav-item');
+  bottomNavItems.forEach((item) => {
+    const targetPage = item.dataset.page || item.getAttribute('href');
+    const isActive =
+      targetPage === currentPath ||
+      (currentPath === 'index.html' && (targetPage === './' || targetPage === '/'));
+
+    if (isActive) {
+      item.classList.add('active');
+    } else {
+      item.classList.remove('active');
+    }
+  });
 }
 
 function updateYear() {
@@ -64,6 +79,48 @@ function updateYear() {
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
+}
+
+/* =========================================
+   Scroll-based Header Hide/Show (Mobile)
+   ========================================= */
+function initScrollHeader() {
+  const header = document.querySelector('header');
+  if (!header) return;
+
+  let lastScrollY = window.scrollY;
+  let ticking = false;
+
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+
+    // Only apply on mobile
+    if (window.innerWidth > 768) {
+      header.style.transform = '';
+      return;
+    }
+
+    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      // Scrolling down - hide header
+      header.style.transform = 'translateY(-100%)';
+    } else {
+      // Scrolling up - show header
+      header.style.transform = 'translateY(0)';
+    }
+
+    lastScrollY = currentScrollY;
+    ticking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(handleScroll);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // Add transition for smooth animation
+  header.style.transition = 'transform 0.3s ease';
 }
 
 /* =========================================
@@ -310,6 +367,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   initScrollReveal();
   initSpotlight();
   initParticles();
+  initScrollHeader();
 
   // Initialize i18n
   if (window.i18n) {
