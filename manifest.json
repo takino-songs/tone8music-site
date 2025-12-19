@@ -1,0 +1,10 @@
+{
+  "name": "Tone8Music",
+  "short_name": "Tone8Music",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#0a0a12",
+  "theme_color": "#00f2ff",
+  "description": "Free BGM Label for Creators",
+  "icons": []
+}

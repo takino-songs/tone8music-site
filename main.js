@@ -182,36 +182,49 @@ function initParticles() {
    SPA Router & Page Transitions
    ========================================= */
 
+// Function to unregister all service workers (Fixes remnants from other projects)
+function unregisterServiceWorkers() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(registrations => {
+      for (let registration of registrations) {
+        registration.unregister();
+        console.log('[SW] Unregistered old service worker:', registration);
+      }
+    });
+  }
+}
+
 async function loadPage(url, push = true) {
   try {
-    // Clean URL (remove .html for display, but add it for fetching)
+    // Ensure URL has .html for static compatibility unless it's the root
     let fetchUrl = url;
     let displayUrl = url;
 
-    // If URL doesn't have .html, add it for fetching
-    if (!url.endsWith('.html')) {
-      if (url === '/' || url === '') {
-        fetchUrl = 'index.html';
-        displayUrl = '/';
-      } else {
-        fetchUrl = url.replace(/\/$/, '') + '.html';
-        displayUrl = url.replace(/\.html$/, '');
-      }
-    } else {
-      // If URL has .html, remove it for display
-      displayUrl = url.replace(/\.html$/, '');
-      if (displayUrl === '/index' || displayUrl === 'index') {
-        displayUrl = '/';
-      }
+    if (url === '/' || url === '') {
+      fetchUrl = 'index.html';
+      displayUrl = 'index.html'; // Keep extension for reload safety
+    } else if (!url.endsWith('.html')) {
+      fetchUrl = url.split('?')[0].split('#')[0] + '.html';
+      displayUrl = fetchUrl;
     }
 
     const response = await fetch(fetchUrl);
-    if (!response.ok) throw new Error(`Failed to load ${fetchUrl}: ${response.statusText}`);
+    if (!response.ok) {
+      // If .html fetch fails, try exact URL
+      const secondaryResponse = await fetch(url);
+      if (!secondaryResponse.ok) throw new Error(`Failed to load ${url}`);
+      return;
+    }
     const htmlText = await response.text();
 
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlText, 'text/html');
-    const newMainContent = doc.querySelector('main').innerHTML;
+    const newMain = doc.querySelector('main');
+    if (!newMain) {
+      window.location.href = url;
+      return;
+    }
+    const newMainContent = newMain.innerHTML;
     const newTitle = doc.title;
 
     const currentMain = document.querySelector('main');
@@ -240,7 +253,6 @@ async function loadPage(url, push = true) {
     initScrollReveal();
     initSpotlight();
 
-    // Apply i18n translations to the new content
     if (window.i18n) {
       window.i18n.updateContent();
     }
@@ -251,7 +263,7 @@ async function loadPage(url, push = true) {
 
   } catch (err) {
     console.error('SPA Navigation Error:', err);
-    window.location.href = url;
+    if (push) window.location.href = url;
   }
 }
 
@@ -271,15 +283,6 @@ function initRouter() {
     }
 
     e.preventDefault();
-
-    // Convert href to clean URL (remove .html)
-    if (href.endsWith('.html')) {
-      href = href.replace(/\.html$/, '');
-      if (href === 'index' || href === '/index') {
-        href = '/';
-      }
-    }
-
     loadPage(href);
   });
 
@@ -293,6 +296,8 @@ function initRouter() {
    ========================================= */
 
 document.addEventListener('DOMContentLoaded', async () => {
+  unregisterServiceWorkers();
+
   const [headerEl, footerEl] = await Promise.all([
     loadPartial('site-header', 'partials/header.html'),
     loadPartial('site-footer', 'partials/footer.html'),
@@ -312,14 +317,4 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   initRouter();
-
-  // Clean up URL on initial page load (remove .html)
-  const currentPath = window.location.pathname;
-  if (currentPath.endsWith('.html')) {
-    let cleanPath = currentPath.replace(/\.html$/, '');
-    if (cleanPath === '/index' || cleanPath === 'index') {
-      cleanPath = '/';
-    }
-    history.replaceState(null, document.title, cleanPath + window.location.search + window.location.hash);
-  }
 });

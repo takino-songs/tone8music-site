@@ -383,6 +383,12 @@ header {
 }
 
 @media (max-width: 768px) {
+  :root {
+    --spacing-md: 16px;
+    --spacing-lg: 32px;
+    --spacing-xl: 48px;
+  }
+
   .menu-toggle {
     display: block;
   }
@@ -412,6 +418,30 @@ header {
     display: block;
     padding: 10px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  /* Reduce whitespace on mobile */
+  main {
+    padding-top: 80px;
+  }
+
+  .section {
+    padding: var(--spacing-lg) 0;
+  }
+
+  .hero {
+    padding: 60px 0 40px;
+  }
+
+  .card,
+  .faq-item,
+  .text-content,
+  .contact-form {
+    padding: 20px;
+  }
+
+  .faq-answer {
+    padding: 0 20px 20px;
   }
 }
 
