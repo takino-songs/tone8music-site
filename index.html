@@ -8,38 +8,60 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Poppins:wght@400;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Poppins:wght@500;600;700;800&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <link rel="manifest" href="manifest.json" />
 </head>
 
-<body>
+<body class="home-page">
   <header id="site-header" data-include="header"></header>
 
   <main>
-    <section class="hero">
+    <section class="hero hero-home">
       <div class="container">
+        <p class="hero-eyebrow" data-i18n="home_eyebrow">Tone8Music</p>
         <h1 data-i18n="hero_title">フリーBGMサービス</h1>
-        <p data-i18n="hero_desc">
+        <p class="hero-lead" data-i18n="hero_desc">
           Tone8Musicは、YouTube等SNSや配信、ゲーム制作、その他コンテンツなどに使いやすいBGMを配信する音楽ブランドです。
         </p>
         <div class="btn-row">
           <a class="btn btn-primary" href="bgm.html" data-i18n="btn_find_bgm">Free BGMを探す</a>
           <a class="btn btn-secondary" href="creators.html" data-i18n="btn_join_creators">作曲者として参加する</a>
         </div>
+        <div class="hero-meta-grid" aria-label="Tone8Music highlights">
+          <div class="hero-meta-card">
+            <span class="hero-meta-label" data-i18n="hero_meta_label1">用途</span>
+            <strong data-i18n="hero_meta_value1">YouTube / 配信 / ゲーム</strong>
+          </div>
+          <div class="hero-meta-card">
+            <span class="hero-meta-label" data-i18n="hero_meta_label2">ライセンス</span>
+            <strong data-i18n="hero_meta_value2">商用利用対応</strong>
+          </div>
+          <div class="hero-meta-card">
+            <span class="hero-meta-label" data-i18n="hero_meta_label3">更新</span>
+            <strong data-i18n="hero_meta_value3">継続的に追加予定</strong>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container">
-        <div class="card">
+    <section class="section section-intro">
+      <div class="container split-intro">
+        <div class="card intro-main-card">
           <h2 data-i18n="about_title">Tone8Music について</h2>
           <p data-i18n="about_desc">
             クリエイターが安心して使えるBGMを集め、多彩な楽曲を展開していきます。
             今後はジャンルやムードごとの幅広いラインナップを揃え、どんな映像にもぴったりなBGMを見つけられる場を目指します。
           </p>
         </div>
+        <aside class="card quick-links-card" aria-label="Quick links">
+          <h3 data-i18n="quick_start_title">はじめての方へ</h3>
+          <a href="bgm.html" data-i18n="quick_start_step1">1. Free BGMを探す</a>
+          <a href="license.html" data-i18n="quick_start_step2">2. 利用ルールを確認する</a>
+          <a href="faq.html" data-i18n="quick_start_step3">3. 不明点をFAQで確認</a>
+          <a href="contact.html" data-i18n="quick_start_step4">4. お問い合わせする</a>
+        </aside>
       </div>
     </section>
 
@@ -50,31 +72,51 @@
         <div class="cards-grid use-cases-grid">
           <article class="card use-case-card">
             <div class="use-case-header">
-              <span class="icon-badge">YT</span>
+              <span class="icon-badge" data-i18n="usecase_badge_yt">動画</span>
               <h3 data-i18n="usecase_yt_title">YouTube / Shorts</h3>
             </div>
             <p data-i18n="usecase_yt_desc">Vlog やレビュー動画、ショートムービーに合わせやすい長さとテンションのBGM。</p>
           </article>
           <article class="card use-case-card">
             <div class="use-case-header">
-              <span class="icon-badge">LIVE</span>
+              <span class="icon-badge" data-i18n="usecase_badge_live">配信</span>
               <h3 data-i18n="usecase_live_title">ライブ配信</h3>
             </div>
             <p data-i18n="usecase_live_desc">ゲーム実況や雑談配信で会話を邪魔せず、雰囲気を保てるループ可能なトラック。</p>
           </article>
           <article class="card use-case-card">
             <div class="use-case-header">
-              <span class="icon-badge">APP</span>
+              <span class="icon-badge" data-i18n="usecase_badge_app">開発</span>
               <h3 data-i18n="usecase_app_title">アプリ / ゲーム</h3>
             </div>
             <p data-i18n="usecase_app_desc">インディーゲームやアプリの背景音として活用しやすい、ムード別のBGM。</p>
           </article>
           <article class="card use-case-card">
             <div class="use-case-header">
-              <span class="icon-badge">BIZ</span>
+              <span class="icon-badge" data-i18n="usecase_badge_biz">ビジネス</span>
               <h3 data-i18n="usecase_biz_title">店舗 / プレゼン</h3>
             </div>
             <p data-i18n="usecase_biz_desc">店舗BGMやピッチ資料の動画など、ビジネス用途でも安心して使える選曲。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-strengths">
+      <div class="container">
+        <h2 data-i18n="strengths_title">選ばれる理由</h2>
+        <div class="cards-grid strengths-grid">
+          <article class="card strength-card">
+            <h3 data-i18n="strength1_title">クリエイター目線の楽曲設計</h3>
+            <p data-i18n="strength1_desc">トークやナレーションを邪魔しない帯域設計で、編集時に扱いやすいBGMを目指しています。</p>
+          </article>
+          <article class="card strength-card">
+            <h3 data-i18n="strength2_title">用途に応じたトーン展開</h3>
+            <p data-i18n="strength2_desc">落ち着いた雰囲気から疾走感のある楽曲まで、ムード別に選びやすい構成を整備しています。</p>
+          </article>
+          <article class="card strength-card">
+            <h3 data-i18n="strength3_title">継続利用しやすい導線</h3>
+            <p data-i18n="strength3_desc">ライセンス、FAQ、お問い合わせまでを一連で確認できるため、導入の不安を減らせます。</p>
           </article>
         </div>
       </div>
@@ -121,6 +163,19 @@
                 <p data-i18n="flow_step4_desc">任意ですが、概要欄などに「♪ Music by Tone8Music」と記載いただけると嬉しいです。</p>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-cta">
+      <div class="container">
+        <div class="card cta-card">
+          <h2 data-i18n="home_cta_title">コンテンツに合う1曲を、すぐに。</h2>
+          <p data-i18n="home_cta_desc">まずはBGM一覧から、あなたの映像や配信に合うトラックを見つけてください。</p>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="bgm.html" data-i18n="home_cta_btn1">BGM一覧を見る</a>
+            <a class="btn btn-secondary" href="contact.html" data-i18n="home_cta_btn2">お問い合わせ</a>
           </div>
         </div>
       </div>

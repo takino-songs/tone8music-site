@@ -5,13 +5,13 @@
 
 :root {
   /* Colors */
-  --bg-dark: #0a0a12;
-  --bg-dark-secondary: #0f111a;
-  --text-main: #e0e6ed;
-  --text-muted: #94a3b8;
-  --accent-cyan: #00f2ff;
-  --accent-purple: #8a2be2;
-  /* Deep Violet */
+  --bg-dark: #07111f;
+  --bg-dark-secondary: #0d1d30;
+  --text-main: #e7edf5;
+  --text-muted: #9aa9ba;
+  --accent-cyan: #43d4ff;
+  --accent-purple: #2c6bff;
+  /* Deep Blue */
   --accent-pink: #ff0055;
   /* Kept for minor accents if needed, but removed from main logo */
   --glass-bg: rgba(255, 255, 255, 0.03);
@@ -19,7 +19,7 @@
   --glass-highlight: rgba(255, 255, 255, 0.15);
 
   /* Gradients */
-  --gradient-primary: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+  --gradient-primary: linear-gradient(135deg, #43d4ff, #2c6bff);
   --gradient-glow: radial-gradient(circle at center, rgba(0, 242, 255, 0.15), transparent 70%);
 
   /* Spacing */
@@ -1138,6 +1138,174 @@ header {
 
 .flow-link:hover {
   text-decoration: underline;
+}
+
+/* =========================================
+   Home Page: Premium Layout
+   ========================================= */
+
+.home-page {
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(67, 212, 255, 0.16), transparent 55%),
+    radial-gradient(900px 520px at 90% 10%, rgba(44, 107, 255, 0.15), transparent 50%),
+    linear-gradient(180deg, #07111f 0%, #030913 100%);
+}
+
+.home-page .hero-home {
+  padding: 120px 0 84px;
+}
+
+.hero-eyebrow {
+  margin: 0 auto 14px;
+  width: fit-content;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #c9f4ff;
+  background: rgba(67, 212, 255, 0.12);
+  border: 1px solid rgba(67, 212, 255, 0.32);
+}
+
+.home-page .hero h1 {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-lead {
+  max-width: 760px;
+  margin: 0 auto var(--spacing-lg);
+}
+
+.hero-meta-grid {
+  margin-top: 34px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.hero-meta-card {
+  text-align: left;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.hero-meta-label {
+  display: block;
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #b5c4d5;
+  margin-bottom: 8px;
+}
+
+.hero-meta-card strong {
+  color: #f3f8ff;
+  font-size: 1rem;
+}
+
+.split-intro {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: var(--spacing-md);
+}
+
+.quick-links-card h3 {
+  margin-bottom: 14px;
+}
+
+.quick-links-card a {
+  display: block;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #d8e2ef;
+}
+
+.quick-links-card a:last-child {
+  border-bottom: 0;
+}
+
+.quick-links-card a:hover {
+  color: #ffffff;
+  transform: translateX(3px);
+}
+
+.section-strengths h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.strengths-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.strength-card h3 {
+  color: #fff;
+  font-size: 1.18rem;
+  margin-bottom: 10px;
+}
+
+.cta-card {
+  text-align: center;
+  padding: 48px 32px;
+}
+
+.cta-card h2 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  margin-bottom: 10px;
+}
+
+.cta-card p {
+  max-width: 680px;
+  margin: 0 auto 26px;
+}
+
+.logo,
+.footer-logo {
+  background: linear-gradient(to right, #ffffff, #64ddff, #2c6bff);
+  background-size: 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media (max-width: 900px) {
+  .split-intro {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-meta-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .strengths-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-page .hero-home {
+    padding: 60px 0 36px;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+  }
+
+  .hero-meta-card {
+    padding: 14px 16px;
+  }
+
+  .cta-card {
+    padding: 30px 18px;
+  }
 }
 
 /* =========================================

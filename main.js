@@ -186,30 +186,28 @@ function initLoader() {
   document.body.appendChild(loader);
 
   window.addEventListener('load', () => {
-    // Wait for the focus animation briefly before fading out
     setTimeout(() => {
       loader.classList.add('loaded');
-      // Remove after transition completes
       setTimeout(() => {
         loader.remove();
       }, 600);
-    }, 500);
+    }, 180);
   });
 
-  // Fallback for slow connections
   setTimeout(() => {
     if (!loader.classList.contains('loaded')) {
       loader.classList.add('loaded');
       setTimeout(() => loader.remove(), 1200);
     }
-  }, 4000);
+  }, 2500);
 }
 
 /* =========================================
    Ambient Particles
    ========================================= */
 function initParticles() {
-  const particleCount = 30;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const particleCount = window.innerWidth < 768 ? 8 : 14;
   const body = document.body;
 
   for (let i = 0; i < particleCount; i++) {
